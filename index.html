@@ -13,7 +13,7 @@
     <style>
         :root {
             --bg-glass: rgba(15, 23, 42, 0.75);
-            --bg-card: rgba(15, 23, 42, 0.82);
+            --bg-card: rgba(15, 23, 42, 0.85);
             --bg-input: rgba(30, 41, 59, 0.85);
             --accent-purple: #c084fc;
             --accent-blue: #38bdf8;
@@ -52,7 +52,6 @@
             z-index: -1;
         }
 
-        /* Header */
         header {
             background: rgba(3, 7, 18, 0.65);
             backdrop-filter: blur(16px);
@@ -99,7 +98,6 @@
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
         }
 
-        /* Main Layout */
         .main-wrapper {
             flex: 1;
             max-width: 900px;
@@ -521,17 +519,16 @@
             <span>수면탑 (Sleep Top)</span>
         </div>
         <nav>
-            <a href="#" onclick="restartSurvey()">설문 다시 하기</a>
+            <a href="#" onclick="restartSurvey()">진단 다시 하기</a>
         </nav>
     </header>
 
     <div class="main-wrapper">
-        <!-- Interactive Step-by-Step Survey Container -->
         <div class="glass-card" id="survey-card">
             
             <div class="progress-container">
                 <div class="progress-header">
-                    <span id="step-indicator">질문 1 / 9</span>
+                    <span id="step-indicator">단계 1 / 9</span>
                     <span id="progress-percent">11% 완료</span>
                 </div>
                 <div class="progress-bar-bg">
@@ -542,7 +539,7 @@
             <!-- STEP 1: Age -->
             <div class="step-panel active" data-step="1">
                 <div class="question-title"><i class="fa-solid fa-user"></i> 연령대를 선택해 주세요</div>
-                <div class="question-desc">연령대에 따른 권장 수면시간 알고리즘 적용에 활용됩니다.</div>
+                <div class="question-desc">나이에 따른 최적 권장 수면시간 알고리즘 분석에 활용됩니다.</div>
                 <div class="option-grid">
                     <div class="option-btn selected" onclick="selectOption('age', 'adult', this)">
                         <span class="title">성인 (19~64세)</span>
@@ -559,135 +556,135 @@
                 </div>
             </div>
 
-            <!-- STEP 2: Normal Sleep Time -->
+            <!-- STEP 2: Sleep Time -->
             <div class="step-panel" data-step="2">
                 <div class="question-title"><i class="fa-solid fa-bed"></i> 평소 잠자리에 드는 시각은 언제인가요?</div>
-                <div class="question-desc">취침에 들어가는 입면 시각을 설정합니다.</div>
+                <div class="question-desc">보통 불을 끄고 누워서 잠을 청하는 시간을 지정하세요.</div>
                 <div class="custom-input-group">
                     <label for="sleep-time">평소 취침 시간</label>
                     <input type="time" id="sleep-time" value="23:30">
                 </div>
             </div>
 
-            <!-- STEP 3: Mandatory Wake Time -->
+            <!-- STEP 3: Wake Time -->
             <div class="step-panel" data-step="3">
-                <div class="question-title"><i class="fa-solid fa-sun"></i> 평소 반드시 일어나야 하는 기상 시각은 언제인가요?</div>
-                <div class="question-desc">사용자의 출근/등교 등 핵심 일정을 보존하기 위한 기준 시간입니다.</div>
+                <div class="question-title"><i class="fa-solid fa-sun"></i> 반드시 일어나야 하는 기상 시각은 언제인가요?</div>
+                <div class="question-desc">일과 및 출근/등교 라이프스타일에 맞춘 기상 기준시간입니다.</div>
                 <div class="custom-input-group">
                     <label for="wake-time">필수 기상 시간</label>
                     <input type="time" id="wake-time" value="07:00">
                 </div>
             </div>
 
-            <!-- STEP 4: Real Available Sleep Duration -->
+            <!-- STEP 4: Available Sleep Duration -->
             <div class="step-panel" data-step="4">
-                <div class="question-title"><i class="fa-solid fa-hourglass-half"></i> 하루 동안 실질적으로 잘 수 있는 시간은 몇 시간인가요?</div>
-                <div class="question-desc">업무, 가사, 개인 라이프스타일을 고려한 실질 수면 가능 시간입니다.</div>
+                <div class="question-title"><i class="fa-solid fa-hourglass-half"></i> 하루에 실제 잘 수 있는 가능 시간은 몇 시간인가요?</div>
+                <div class="question-desc">업무, 가사, 개인활동을 제외하고 실제 수면에 할애 가능한 시간입니다.</div>
                 <div class="custom-input-group">
-                    <label for="available-hours">최대 가능 수면 시간 (시간 단위)</label>
+                    <label for="available-hours">최대 가능 수면 시간 (시간)</label>
                     <input type="number" id="available-hours" min="3" max="14" step="0.5" value="7.5" placeholder="예: 7.5">
                 </div>
             </div>
 
-            <!-- STEP 5: Daily Exercise Level -->
+            <!-- STEP 5: Exercise Level -->
             <div class="step-panel" data-step="5">
-                <div class="question-title"><i class="fa-solid fa-person-running"></i> 하루 동안의 운동량 및 신체 활동은 어느 정도인가요?</div>
-                <div class="question-desc">신체 활동은 깊은 수면(NREM) 유도에 큰 영향을 미칩니다.</div>
+                <div class="question-title"><i class="fa-solid fa-person-running"></i> 하루 동안의 운동량 및 신체 활동 수준은?</div>
+                <div class="question-desc">신체 활동량은 서카디안 리듬과 깊은 뇌파 수면을 결정합니다.</div>
                 <div class="option-grid">
                     <div class="option-btn" onclick="selectOption('exercise', 'none', this)">
                         <span class="title">신체 활동 없음</span>
-                        <span class="sub">주로 앉아서 생활 / 가벼운 가사활동</span>
+                        <span class="sub">주로 앉아서 생활 및 좌식 활동 위주</span>
                     </div>
                     <div class="option-btn" onclick="selectOption('exercise', 'light', this)">
                         <span class="title">가벼운 활동</span>
-                        <span class="sub">30분 미만의 산책이나 산보</span>
+                        <span class="sub">30분 미만의 걷기나 가벼운 산책</span>
                     </div>
                     <div class="option-btn selected" onclick="selectOption('exercise', 'moderate', this)">
                         <span class="title">중등도 운동</span>
-                        <span class="sub">30분~1시간 활발한 운동 (땀나는 정도)</span>
+                        <span class="sub">30분~1시간 정도 땀이 나는 활동</span>
                     </div>
                     <div class="option-btn" onclick="selectOption('exercise', 'heavy', this)">
                         <span class="title">고강도 운동</span>
-                        <span class="sub">1시간 이상의 격렬한 웨이트/유산소</span>
+                        <span class="sub">1시간 이상의 격렬한 유산소/웨이트</span>
                     </div>
                 </div>
             </div>
 
-            <!-- STEP 6: Diet & Late Snack Habit -->
+            <!-- STEP 6: Diet & Snack -->
             <div class="step-panel" data-step="6">
-                <div class="question-title"><i class="fa-solid fa-utensils"></i> 식습관 및 카페인/야식 섭취 패턴은 어떠신가요?</div>
-                <div class="question-desc">취침 전 위장 소화 작용과 카페인은 숙면을 방해합니다.</div>
+                <div class="question-title"><i class="fa-solid fa-utensils"></i> 식습관 및 카페인/야식 패턴은 어떠신가요?</div>
+                <div class="question-desc">취침 전 장기 소화기관 작용과 뇌 자극 성분은 깊은 잠을 방해합니다.</div>
                 <div class="option-grid">
                     <div class="option-btn selected" onclick="selectOption('dietHabit', 'good', this)">
-                        <span class="title">건강한 식습관</span>
+                        <span class="title">건강한 습관 유지</span>
                         <span class="sub">취침 3시간 전 식사 완료 및 카페인 자제</span>
                     </div>
                     <div class="option-btn" onclick="selectOption('dietHabit', 'caffeine', this)">
                         <span class="title">오후 카페인 섭취</span>
-                        <span class="sub">오후 2시 이후 커피나 에너지 음료 마심</span>
+                        <span class="sub">오후 2시 이후 커피 및 음료 마심</span>
                     </div>
                     <div class="option-btn" onclick="selectOption('dietHabit', 'latesnack', this)">
-                        <span class="title">야식 / 음주 습관</span>
-                        <span class="sub">취침 2시간 이내 야식이나 술을 자주 마심</span>
+                        <span class="title">야식 및 음주 습관</span>
+                        <span class="sub">취침 2시간 이내 섭취 빈도가 높음</span>
                     </div>
                     <div class="option-btn" onclick="selectOption('dietHabit', 'both', this)">
-                        <span class="title">카페인 + 야식 모두 해당</span>
-                        <span class="sub">오후 카페인과 취침 전 야식을 모두 즐김</span>
+                        <span class="title">카페인 + 야식 복합</span>
+                        <span class="sub">늦은 시간 카페인과 야식을 모두 즐김</span>
                     </div>
                 </div>
             </div>
 
             <!-- STEP 7: Pre-Bed Habits -->
             <div class="step-panel" data-step="7">
-                <div class="question-title"><i class="fa-solid fa-mobile-screen-button"></i> 잠들기 직전 침대에서의 주요 행동은 무엇인가요?</div>
-                <div class="question-desc">취침 직전 입면 환경을 진단합니다.</div>
+                <div class="question-title"><i class="fa-solid fa-mobile-screen-button"></i> 잠들기 직전 침대에서 하는 주요 행동은?</div>
+                <div class="question-desc">입면 환경 및 자율신경계 이완 상태를 평가합니다.</div>
                 <div class="option-grid">
                     <div class="option-btn" onclick="selectOption('preBedHabit', 'screen', this)">
                         <span class="title">스마트폰 / TV 시청</span>
-                        <span class="sub">블루라이트에 노출되는 생활</span>
+                        <span class="sub">스프린트 블루라이트 노출</span>
                     </div>
                     <div class="option-btn selected" onclick="selectOption('preBedHabit', 'relax', this)">
                         <span class="title">독서 / 조용한 음악</span>
-                        <span class="sub">심신을 편안하게 이완함</span>
+                        <span class="sub">마음과 뇌를 안라하게 이완</span>
                     </div>
                     <div class="option-btn" onclick="selectOption('preBedHabit', 'stretching', this)">
-                        <span class="title">가벼운 스트레칭 / 족욕</span>
-                        <span class="sub">신체 체온을 서서히 낮춤</span>
+                        <span class="title">스트레칭 / 족욕</span>
+                        <span class="sub">심부 체온을 낮추는 수면 준비</span>
                     </div>
                     <div class="option-btn" onclick="selectOption('preBedHabit', 'work', this)">
-                        <span class="title">업무 / 복잡한 생각</span>
-                        <span class="sub">침대 위에서 지속적인 뇌 활성화</span>
+                        <span class="title">업무 / 뇌 활성화 행동</span>
+                        <span class="sub">침대에서 고민 및 업무 자극 유지</span>
                     </div>
                 </div>
             </div>
 
             <!-- STEP 8: Mid-night Awakenings -->
             <div class="step-panel" data-step="8">
-                <div class="question-title"><i class="fa-solid fa-moon"></i> 밤에 자다가 깬 횟수는 평균 몇 회인가요?</div>
-                <div class="question-desc">수면 유지 장애 요인을 점검합니다.</div>
+                <div class="question-title"><i class="fa-solid fa-moon"></i> 밤중 자다가 도중에 깨는 횟수는 몇 회인가요?</div>
+                <div class="question-desc">수면 유지의 연속성 및 조각화 상태를 진단합니다.</div>
                 <div class="option-grid">
                     <div class="option-btn selected" onclick="selectOption('wakeCount', '0', this)">
-                        <span class="title">없음 (깨지 않고 푹 옴)</span>
+                        <span class="title">깨지 않고 푹 잠</span>
                         <span class="sub">수면 유지 상태 매우 양호</span>
                     </div>
                     <div class="option-btn" onclick="selectOption('wakeCount', '1', this)">
-                        <span class="title">1~2회 정도 깸</span>
-                        <span class="sub">화장실이나 사소한 이유로 깸</span>
+                        <span class="title">1~2회 깨어남</span>
+                        <span class="sub">화장실이나 사소한 미세 깨어남</span>
                     </div>
                     <div class="option-btn" onclick="selectOption('wakeCount', '3', this)">
-                        <span class="title">3회 이상 자주 깸</span>
-                        <span class="sub">깊은 잠을 유지하기 어려운 상태</span>
+                        <span class="title">3회 이상 자주 깨어남</span>
+                        <span class="sub">깊은 단계를 유지하기 힘든 상태</span>
                     </div>
                 </div>
             </div>
 
-            <!-- STEP 9: Subjective Fatigue Level (1~100) -->
+            <!-- STEP 9: Fatigue Level (1~100) -->
             <div class="step-panel" data-step="9">
-                <div class="question-title"><i class="fa-solid fa-battery-quarter"></i> 평소 낮 동안 느끼는 주간 피로도는 몇 점인가요? (1 ~ 100)</div>
-                <div class="question-desc">피로도 점수를 슬라이더로 조절해 보세요.</div>
+                <div class="question-title"><i class="fa-solid fa-battery-quarter"></i> 낮 동안 느끼는 주간 피로도 점수 (1 ~ 100점)</div>
+                <div class="question-desc">주간 주관적 피로 수준을 슬라이더로 입력해 보세요.</div>
                 
                 <div class="slider-box">
-                    <div style="font-size: 0.95rem; color: var(--text-muted);">현재 피로도 점수</div>
+                    <div style="font-size: 0.95rem; color: var(--text-muted);">주간 피로 지수</div>
                     <div class="fatigue-val-num" id="fatigue-score-display">60점</div>
                     <div style="font-size: 0.9rem; color: var(--accent-amber); font-weight:600;" id="fatigue-status-desc">중간 정도의 피로 상태</div>
                     <div style="margin-top: 20px;">
@@ -696,7 +693,6 @@
                 </div>
             </div>
 
-            <!-- Navigation Buttons -->
             <div class="btn-nav-group">
                 <button class="btn-prev" id="btn-prev" onclick="prevStep()" style="visibility: hidden;">
                     <i class="fa-solid fa-arrow-left"></i> 이전
@@ -712,32 +708,32 @@
         <div class="glass-card" id="result-section">
             <div class="question-title">
                 <i class="fa-solid fa-wand-magic-sparkles" style="color: var(--accent-purple);"></i>
-                정밀 수면 분석 & 최적 알고리즘 리포트
+                맞춤 수면 케어 분석 리포트
             </div>
 
             <div class="dashboard-grid">
                 <div>
                     <div class="score-box">
-                        <span style="color: var(--text-muted); font-size: 0.95rem;">종합 수면 효율 건강 점수</span>
+                        <span style="color: var(--text-muted); font-size: 0.95rem;">종합 수면 점수</span>
                         <div class="score-num" id="score-text">82<span style="font-size: 1.5rem; color: var(--text-muted);"> / 100</span></div>
                         <div id="status-badge-container">
-                            <span class="status-badge status-good" id="status-badge">양호한 수면 건강</span>
+                            <span class="status-badge status-good" id="status-badge">양호한 수면 상태</span>
                         </div>
                     </div>
 
                     <div style="background: rgba(15, 23, 42, 0.5); padding: 20px; border-radius: 16px; border: var(--glass-border);">
                         <h4 style="margin-bottom: 10px; color: #38bdf8; font-size: 1.05rem;">
-                            <i class="fa-solid fa-square-check"></i> 수면 상태 진단 요약
+                            <i class="fa-solid fa-chart-pie"></i> 수면 분석 종합 요약
                         </h4>
                         <p id="summary-text" style="font-size: 0.95rem; color: #e2e8f0;">
-                            분석 결과 요약이 표시됩니다.
+                            분석 결과 요약 데이터가 여기에 로드됩니다.
                         </p>
                     </div>
                 </div>
 
                 <div>
                     <h4 style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 12px; text-align: center;">
-                        목표 수면 vs 실제 가능 수면 vs 현재 수면 (시간)
+                        권장 수면 vs 가능 수면 vs 현재 수면 (시간)
                     </h4>
                     <div class="chart-container">
                         <canvas id="sleepChart"></canvas>
@@ -745,14 +741,13 @@
                 </div>
             </div>
 
-            <!-- Optimal Sleep Cycles Section -->
             <div class="optimal-routine-box">
                 <h3>
                     <i class="fa-solid fa-clock" style="color: var(--accent-amber);"></i>
-                    개운함을 극대화하는 최적 취침 시각 제안 (수면 주기 90분 분석)
+                    개운한 기상을 위한 최적 취침 추천 (90분 수면주기 기준)
                 </h3>
                 <p style="font-size: 0.92rem; color: #cbd5e1; margin-bottom: 15px;">
-                    인간의 수면은 90분 단위(REM/NREM)로 순환합니다. 렘수면 단계에서 깨어나야 뇌와 몸이 가장 개운합니다. 고정하신 필수 기상 시각에 맞춰 루틴을 침해하지 않는 최적 취침 시각입니다.
+                    인간의 수면 주기(REM/NREM) 90분 사이클 끝에서 기상하면 뇌가 가장 개운합니다. 지정하신 기상 시간에 기반한 최적의 취침 시각 타임라인입니다.
                 </p>
                 <div class="routine-pills" id="routine-pills"></div>
             </div>
@@ -760,20 +755,19 @@
             <div class="advice-section">
                 <h3 style="font-size: 1.2rem; margin-top: 25px; color: #ffffff; display: flex; align-items: center; gap: 10px;">
                     <i class="fa-solid fa-compass" style="color: var(--accent-purple);"></i>
-                    분석 데이터 기반 맞춤 개선 솔루션
+                    맞춤 행동 가이드 & 개선 솔루션
                 </h3>
                 <div class="advice-grid" id="advice-grid"></div>
             </div>
 
             <button class="btn-restart" onclick="restartSurvey()">
-                <i class="fa-solid fa-rotate-right"></i> 설문 조사 다시 시작하기
+                <i class="fa-solid fa-rotate-right"></i> 다시 진단하기
             </button>
         </div>
 
     </div>
 
     <script>
-        // Data Store
         const formData = {
             age: 'adult',
             exercise: 'moderate',
@@ -789,7 +783,7 @@
 
         function updateProgress() {
             const percent = Math.round((currentStep / totalSteps) * 100);
-            document.getElementById('step-indicator').innerText = `질문 ${currentStep} / ${totalSteps}`;
+            document.getElementById('step-indicator').innerText = `단계 ${currentStep} / ${totalSteps}`;
             document.getElementById('progress-percent').innerText = `${percent}% 완료`;
             document.getElementById('progress-bar').style.width = `${percent}%`;
 
@@ -801,7 +795,7 @@
 
             const nextBtn = document.getElementById('btn-next');
             if (currentStep === totalSteps) {
-                nextBtn.innerHTML = `분석 결과 확인하기 <i class="fa-solid fa-wand-magic-sparkles"></i>`;
+                nextBtn.innerHTML = `리포트 생성하기 <i class="fa-solid fa-wand-magic-sparkles"></i>`;
             } else {
                 nextBtn.innerHTML = `다음 <i class="fa-solid fa-arrow-right"></i>`;
             }
@@ -820,9 +814,9 @@
             document.getElementById('fatigue-score-display').innerText = `${val}점`;
             
             const descEl = document.getElementById('fatigue-status-desc');
-            if (val < 30) descEl.innerText = "피로도 낮음 (쾌적한 상태)";
-            else if (val < 70) descEl.innerText = "중간 정도의 피로 상태";
-            else descEl.innerText = "심각한 피로 누적 상태";
+            if (val < 30) descEl.innerText = "피로도 낮음 (쾌적한 컨디션)";
+            else if (val < 70) descEl.innerText = "중간 정도의 피로 누적";
+            else descEl.innerText = "심각한 수준의 주간 피로 누적";
         }
 
         function nextStep() {
@@ -903,17 +897,17 @@
             const badgeEl = document.getElementById('status-badge');
             if (score >= 80) {
                 badgeEl.className = 'status-badge status-good';
-                badgeEl.innerText = '매우 양호한 수면 건강';
+                badgeEl.innerText = '최적 수면 건강 상태';
             } else if (score >= 60) {
                 badgeEl.className = 'status-badge status-warning';
-                badgeEl.innerText = '주의 필요 - 수면 개선 권장';
+                badgeEl.innerText = '수면 습관 케어 필요';
             } else {
                 badgeEl.className = 'status-badge status-danger';
-                badgeEl.innerText = '위험 - 수면 패턴 종합 교정 필요';
+                badgeEl.innerText = '집중 수면 교정 권장';
             }
 
             document.getElementById('summary-text').innerText = 
-                `현재 목표 기상시간(${wakeTimeStr}) 대비 실제 수면시간은 약 ${currentSleepHours.toFixed(1)}시간입니다. 권장 수면시간(${recommendedHours}시간) 대비 ${currentSleepHours >= recommendedHours ? '충분한' : '부족한'} 시간을 확보하고 계십니다. 피로도(${formData.fatigue}점) 및 취침 습관 요인을 고려한 개선안을 확인하세요.`;
+                `목표 기상시간(${wakeTimeStr}) 기준 실제 수면시간은 ${currentSleepHours.toFixed(1)}시간입니다. 연령별 권장시간(${recommendedHours}시간) 대비 수면 양은 ${currentSleepHours >= recommendedHours ? '충분' : '부족'}하며, 현재 피로도 점수(${formData.fatigue}점)를 감안한 세부 솔루션을 제공합니다.`;
 
             calculateOptimalCycles(wakeTimeStr);
             renderAdviceCards();
@@ -928,12 +922,12 @@
             const wakeDate = new Date();
             wakeDate.setHours(h, m, 0, 0);
 
-            const cycles = [6, 5, 4]; // 9시간, 7.5시간, 6시간 수면
+            const cycles = [6, 5, 4];
             const routineContainer = document.getElementById('routine-pills');
             routineContainer.innerHTML = '';
 
             cycles.forEach(cycleCount => {
-                const sleepMinutes = cycleCount * 90 + 15; // 입면시간 15분 추가
+                const sleepMinutes = cycleCount * 90 + 15; 
                 const bedTime = new Date(wakeDate.getTime() - sleepMinutes * 60 * 1000);
                 
                 const timeStr = bedTime.toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit', hour12: true });
@@ -943,7 +937,7 @@
                 pill.className = 'routine-pill';
                 pill.innerHTML = `
                     <span class="time">${timeStr} 취침</span>
-                    <span class="desc">${cycleCount} 사이클 (${durationHrs}시간 수면)</span>
+                    <span class="desc">${cycleCount}주기 수면 (${durationHrs}시간 수면)</span>
                 `;
                 routineContainer.appendChild(pill);
             });
@@ -953,28 +947,26 @@
             const grid = document.getElementById('advice-grid');
             grid.innerHTML = '';
 
-            // Card 1: Routine
             const card1 = document.createElement('div');
             card1.className = 'advice-card habit';
             card1.innerHTML = `
-                <h4><i class="fa-solid fa-bed"></i> 입면 & 행동 개선</h4>
+                <h4><i class="fa-solid fa-bed"></i> 입면 & 행동 가이드</h4>
                 <ul>
-                    ${formData.preBedHabit === 'screen' ? '<li>취침 1시간 전 스마트폰 블루라이트는 멜라토닌 분비를 억제합니다. 암막 환경을 만드세요.</li>' : ''}
-                    ${formData.wakeCount !== '0' ? '<li>밤중 깨어남 방지를 위해 실내 온도를 18~22℃로 최적화하고 침실을 어둡게 유지하세요.</li>' : ''}
-                    <li>매일 동일한 기상 시각을 유지하는 것이 생체 시계 세팅에 가장 중요합니다.</li>
+                    ${formData.preBedHabit === 'screen' ? '<li>취침 직전 스마트폰 블루라이트 차단이 시급합니다. 취침 1시간 전 기기 사용을 자제하세요.</li>' : ''}
+                    ${formData.wakeCount !== '0' ? '<li>중도 깨어남 방지를 위해 암막 커튼을 활용하고 실내 온도를 18~22℃로 조절하세요.</li>' : ''}
+                    <li>매일 같은 시간에 일어나는 습관이 서카디안 리듬 유지의 핵심입니다.</li>
                 </ul>
             `;
             grid.appendChild(card1);
 
-            // Card 2: Food & Diet
             const card2 = document.createElement('div');
             card2.className = 'advice-card food';
             card2.innerHTML = `
-                <h4><i class="fa-solid fa-mug-hot"></i> 영양 & 섭취 가이드</h4>
+                <h4><i class="fa-solid fa-mug-hot"></i> 식이 & 영양 솔루션</h4>
                 <ul>
-                    ${formData.dietHabit.includes('caffeine') ? '<li>오후 2시 이후 카페인 반감기가 진행되므로 커피/에너지 음료 섭취를 금하세요.</li>' : ''}
-                    ${formData.dietHabit.includes('latesnack') ? '<li>야식 및 음주는 렘수면을 방해합니다. 최소 취침 3시간 전 식사를 완료하세요.</li>' : ''}
-                    <li>트립토판이 풍부한 바나나, 따뜻한 우유, 체리 등은 멜라토닌 생성을 돕습니다.</li>
+                    ${formData.dietHabit.includes('caffeine') ? '<li>오후 2시 이후 카페인 자제를 통해 수면의 깊이(NREM 3단계)를 보존하세요.</li>' : ''}
+                    ${formData.dietHabit.includes('latesnack') ? '<li>취침 전 위장 활동은 렘수면을 해칩니다. 식사는 취침 3시간 전에 마치세요.</li>' : ''}
+                    <li>트립토판 및 마그네슘이 풍부한 식품(바나나, 견과류)을 저녁 식단에 활용해 보세요.</li>
                 </ul>
             `;
             grid.appendChild(card2);
@@ -992,7 +984,7 @@
                 data: {
                     labels: ['권장 수면시간', '실제 가능시간', '현재 취침시간'],
                     datasets: [{
-                        label: '시간 (시간)',
+                        label: '시간',
                         data: [rec, avail, curr],
                         backgroundColor: [
                             'rgba(56, 189, 248, 0.75)',
